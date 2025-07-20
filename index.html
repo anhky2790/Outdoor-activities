@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Bài thi Listening5 - Outdoor activities</title>
+  <title>Bài thi Listening - Outdoor activities</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
     .speaker-block { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
@@ -17,7 +17,7 @@
 </head>
 <body>
 
-  <h1>Bài thi Listening5: Outdoor activities </h1>
+  <h1>Bài thi Listening: Outdoor activities </h1>
   <p><strong>Hướng dẫn:</strong> Nghe từng đoạn âm thanh và chọn câu mô tả chính xác nội dung người nói. Mỗi đoạn chỉ nghe tối đa 2 lần.</p>
 
   <script>
@@ -28,23 +28,16 @@
       "Mountain biking",
       "Camping overnight"
     ];
-
-    const correctTexts = [
-      answerChoices[0], // Horse riding
-      answerChoices[1], // Going for a run
-      answerChoices[2], // Climbing
-      answerChoices[3]  // Mountain biking
-    ];
-
+    const correctAnswers = ["A", "B", "C", "D"];
+    const correctTexts = [answerChoices[0], answerChoices[1], answerChoices[2], answerChoices[3]];
     const transcripts = [
       "Speaker 1: My hometown is in the countryside, and we have a very large and beautiful farm. I’ve been learning to ride horses since I was a child, and it’s still my hobby to this day. Whenever I want to relax or enjoy the scenery, I ride my horse along the farm and across the meadows.",
       "Speaker 2: My husband and I often wake up early and go to a nearby forest for exercise. We usually go jogging in the early morning to stay healthy, and we really enjoy the fresh air and natural scenery in the forest.",
-      "Speaker 3: I used to love mountain biking, enjoying the thrill of riding down steep slopes. It was really an amazing and adventurous feeling. However, after an injury from a fall, I became haunted by the fear of crashing and now I\'m scared of this sport. But I still love the mountains, so I’ve decided to just go hiking every weekend instead.",
+      "Speaker 3: I used to love mountain biking, enjoying the thrill of riding down steep slopes. It was really an amazing and adventurous feeling. However, after an injury from a fall, I became haunted by the fear of crashing and now I'm scared of this sport. But I still love the mountains, so I’ve decided to just go hiking every weekend instead.",
       "Speaker 4: My father often encourages me to ride horses because it’s a sport he enjoys. But I’m very afraid of this animal and never want to learn how to ride, even though there’s a riding school near my house. Instead, I prefer mountain biking with my friends to conquer high peaks."
     ];
   </script>
 
-  <!-- Speaker Blocks -->
   <div class="speaker-block">
     <h3>Người nói 1</h3>
     <audio id="audio1" controls onplay="limitPlays(1)">
@@ -98,7 +91,6 @@
   <div id="result" class="result" style="display:none;"></div>
 
   <script>
-    // Shuffle function
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -106,7 +98,6 @@
       }
     }
 
-    // Populate choices
     const selects = document.querySelectorAll("select");
     selects.forEach(select => {
       const shuffled = [...answerChoices];
@@ -119,7 +110,6 @@
       });
     });
 
-    // Limit audio plays
     const playCounts = [0, 0, 0, 0];
     function limitPlays(index) {
       const audio = document.getElementById(`audio${index}`);
@@ -132,7 +122,6 @@
       }
     }
 
-    // Handle submission
     function submitQuiz() {
       let correct = 0;
       let output = "<h2>Kết quả</h2>";
@@ -142,7 +131,7 @@
         const status = userAnswer === correctText ? "✅ <span class='correct'>Đúng</span>" : "❌ <span class='incorrect'>Sai</span>";
         if (userAnswer === correctText) correct++;
         output += `<p><strong>Người nói ${i+1}:</strong> ${status}<br>
-        Câu bạn chọn: ${userAnswer || "(Chưa chọn)"}<br>
+        Câu bạn chọn: ${userAnswer}<br>
         Đáp án đúng: ${correctText}<br>
         <em>Transcript: ${transcripts[i]}</em></p>`;
         select.disabled = true;
@@ -151,7 +140,7 @@
       const resultDiv = document.getElementById("result");
       resultDiv.innerHTML = output;
       resultDiv.style.display = "block";
-      resultDiv.scrollIntoView({ behavior: "smooth" }); // 🟢 Scroll đến phần kết quả
+      resultDiv.scrollIntoView({ behavior: "smooth" });
     }
   </script>
 
